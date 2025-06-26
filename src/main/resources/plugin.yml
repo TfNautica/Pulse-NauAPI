@@ -1,0 +1,12 @@
+name: NauAPI
+version: '${project.version}'
+main: org.tfnautica.nauapi.NauAPI
+api-version: '1.21.5'
+author: 'TfNautica'
+description: 'Разрабаотка для Pulse'
+commands:
+  nauapi:
+    aliases:
+      - napi
+      - na
+    description: NauAPI command

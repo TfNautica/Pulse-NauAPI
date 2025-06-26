@@ -1,0 +1,9 @@
+base:
+  max_energy: 100
+  type_name: "Базовый"
+advanced:
+  max_energy: 500
+  type_name: "Улучшенный"
+ultimate:
+  max_energy: 1000
+  type_name: "Ультимейт"
