@@ -18,6 +18,8 @@ public final class NauAPI extends JavaPlugin {
         //getServer().getPluginManager().registerEvents(new AccumulatorListener(), this);
 
         getServer().addRecipe(recipes.base_battery());
+        getServer().addRecipe(recipes.advanced_battery());
+        getServer().addRecipe(recipes.ultimate_battery());
 
     }
 
