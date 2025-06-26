@@ -11,11 +11,11 @@ public final class NauAPI extends JavaPlugin {
     public static JavaPlugin instance;
     @Override
     public void onEnable() {
-        saveDefaultConfig();
+        //saveDefaultConfig();
         instance = this;
-        getCommand("nauapi").setExecutor(new nauapi_Executor());
-        getCommand("nauapi").setTabCompleter(new nauapi_Compeleter());
-        getServer().getPluginManager().registerEvents(new AccumulatorListener(), this);
+        //getCommand("nauapi").setExecutor(new nauapi_Executor());
+        //getCommand("nauapi").setTabCompleter(new nauapi_Compeleter());
+        //getServer().getPluginManager().registerEvents(new AccumulatorListener(), this);
 
         getServer().addRecipe(recipes.base_battery());
 
