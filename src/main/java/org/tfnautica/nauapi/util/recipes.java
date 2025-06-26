@@ -54,7 +54,7 @@ public class recipes {
 
         recipe.setIngredient('C', Battery.get_battery_item(Material.MINER_POTTERY_SHERD, "advanced"));
         recipe.setIngredient('B', Material.REDSTONE_BLOCK);
-        recipe.setIngredient('C', Material.COPPER_INGOT);
+        recipe.setIngredient('A', Material.COPPER_INGOT);
 
         return recipe;
     }
