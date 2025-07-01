@@ -1,0 +1,8 @@
+points:
+  TfNautica:
+    ID:
+      X: 0
+      Y: 0
+      Z: 0
+      world: overworld
+      is_activated: true

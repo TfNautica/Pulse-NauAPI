@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.tfnautica.nauapi.NauAPI;
 import org.tfnautica.nauapi.util.Battery;
+import org.tfnautica.nauapi.util.magnet.Magnet;
 
 public class nauapi_Executor implements CommandExecutor {
 
@@ -18,9 +19,12 @@ public class nauapi_Executor implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
         Player player = (Player) sender;
 
-        player.getInventory().addItem(Battery.get_battery_item(Material.MINER_POTTERY_SHERD, "base"));
-        player.getInventory().addItem(Battery.get_battery_item(Material.MINER_POTTERY_SHERD, "advanced"));
-        player.getInventory().addItem(Battery.get_battery_item(Material.MINER_POTTERY_SHERD, "ultimate"));
+//        player.getInventory().addItem(Battery.get_battery_item(Material.MINER_POTTERY_SHERD, "base"));
+//        player.getInventory().addItem(Battery.get_battery_item(Material.MINER_POTTERY_SHERD, "advanced"));
+//        player.getInventory().addItem(Battery.get_battery_item(Material.MINER_POTTERY_SHERD, "ultimate"));
+
+        Magnet magnet = new Magnet();
+        magnet.startMagnetting();
         return true;
     }
 }
