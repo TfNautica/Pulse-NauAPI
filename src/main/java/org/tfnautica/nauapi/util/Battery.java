@@ -1,8 +1,7 @@
 package org.tfnautica.nauapi.util;
 
-import com.nexomc.nexo.api.NexoItems;
-import com.nexomc.nexo.items.ItemTemplate;
-import com.nexomc.nexo.items.NexoMeta;
+// import com.nexomc.nexo.api.NexoItems;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Item;
@@ -46,8 +45,8 @@ public class Battery {
     }
 
     public static ItemStack get_battery_item(Material material, String type) {
-        // ItemStack accumulator = new ItemStack(material);
-        ItemStack accumulator = NexoItems.itemFromId("t").build();
+        ItemStack accumulator = new ItemStack(material);
+        //ItemStack accumulator = NexoItems.itemFromId("t").build();
 
         ItemMeta meta = accumulator.getItemMeta();
 
