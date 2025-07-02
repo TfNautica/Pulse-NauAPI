@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.tfnautica.nauapi.NauAPI;
-import org.tfnautica.nauapi.Point;
+import org.tfnautica.nauapi.util.Point;
 import org.tfnautica.nauapi.util.Battery;
 import org.tfnautica.nauapi.util.magnet.Magnet;
 

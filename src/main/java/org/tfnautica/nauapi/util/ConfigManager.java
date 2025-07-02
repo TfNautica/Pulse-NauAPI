@@ -7,7 +7,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.tfnautica.nauapi.NauAPI;
-import org.tfnautica.nauapi.Point;
+import org.tfnautica.nauapi.util.Point;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -17,7 +17,7 @@ public class nauapi_Compeleter implements TabCompleter {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
 
         if(args.length == 1) {
-            return List.of("reload", "help");
+            return List.of("reload", "help", "custom");
         }
         return null;
     }
