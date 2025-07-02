@@ -15,6 +15,10 @@ public class nauapi_Compeleter implements TabCompleter {
     public static JavaPlugin plugin = NauAPI.instance;
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
+
+        if(args.length == 1) {
+            return List.of("reload", "help");
+        }
         return null;
     }
 }

@@ -10,3 +10,4 @@ commands:
       - napi
       - na
     description: NauAPI command
+    permission: nauapi.util.nauapi
