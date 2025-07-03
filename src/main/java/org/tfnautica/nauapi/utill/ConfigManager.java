@@ -1,15 +1,10 @@
-package org.tfnautica.nauapi.util;
+package org.tfnautica.nauapi.utill;
 
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.configuration.Configuration;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.tfnautica.nauapi.NauAPI;
-import org.tfnautica.nauapi.util.Point;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

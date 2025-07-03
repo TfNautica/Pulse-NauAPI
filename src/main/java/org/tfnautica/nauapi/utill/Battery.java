@@ -1,10 +1,9 @@
-package org.tfnautica.nauapi.util;
+package org.tfnautica.nauapi.utill;
 
 // import com.nexomc.nexo.api.NexoItems;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -21,22 +20,24 @@ public class Battery {
     public static final NamespacedKey maxEnergyOutputKey = new NamespacedKey(plugin, "maxOutputEnergy");
     public static final NamespacedKey typeKey = new NamespacedKey(plugin, "batteryType");
     public static final NamespacedKey energyTypeKey = new NamespacedKey(plugin, "energyType");
+    public static final NamespacedKey temperatureKey = new NamespacedKey(plugin, "temperature");
+    public static final NamespacedKey statusKey = new NamespacedKey(plugin, "status");
 
-    class base_battery {
+    static class base_battery {
         public static String type = "base";
         public static int max_energy = 100;
         public static int max_output = 15;
         public static String type_name = "базовый";
 
     }
-    class advanced_battery {
+    static class advanced_battery {
         public static String type = "advanced";
         public static int max_energy = 500;
         public static int max_output = 100;
         public static String type_name = "улучшенный";
 
     }
-    class ultimate_battery {
+    static class ultimate_battery {
         public static String type = "ultimate";
         public static int max_energy = 1000;
         public static int max_output = 250;
@@ -49,7 +50,7 @@ public class Battery {
         //ItemStack accumulator = NexoItems.itemFromId("t").build();
 
         ItemMeta meta = accumulator.getItemMeta();
-
+        meta.setMaxStackSize(1);
 
         if(type.equalsIgnoreCase("base")) {
             int max_energy = base_battery.max_energy;
@@ -58,14 +59,16 @@ public class Battery {
 
             meta.setDisplayName("§7Аккумулятор");
 
-            meta.setLore(List.of(getEnergyLore(type, max_energy, max_energy), getTypeLore(type)));
+
             meta.getPersistentDataContainer().set(energyKey, PersistentDataType.INTEGER, max_energy);
             meta.getPersistentDataContainer().set(maxEnergyKey, PersistentDataType.INTEGER, max_energy);
             meta.getPersistentDataContainer().set(maxEnergyOutputKey, PersistentDataType.INTEGER, max_output);
             meta.getPersistentDataContainer().set(typeKey, PersistentDataType.STRING, type);
             meta.getPersistentDataContainer().set(energyTypeKey, PersistentDataType.STRING, "FE");
-
+            meta.getPersistentDataContainer().set(temperatureKey, PersistentDataType.INTEGER, 28);
+            meta.getPersistentDataContainer().set(statusKey, PersistentDataType.STRING, "Active");
             accumulator.setItemMeta(meta);
+            updateLore(accumulator);
         } else if(type.equalsIgnoreCase("advanced")) {
             int max_energy = advanced_battery.max_energy;
             int max_output = advanced_battery.max_output;
@@ -73,82 +76,113 @@ public class Battery {
 
             meta.setDisplayName("§eАккумулятор");
 
-            meta.setLore(List.of(getEnergyLore(type, max_energy, max_energy), getTypeLore(type)));
+
             meta.getPersistentDataContainer().set(energyKey, PersistentDataType.INTEGER, max_energy);
             meta.getPersistentDataContainer().set(maxEnergyKey, PersistentDataType.INTEGER, max_energy);
             meta.getPersistentDataContainer().set(maxEnergyOutputKey, PersistentDataType.INTEGER, max_output);
             meta.getPersistentDataContainer().set(typeKey, PersistentDataType.STRING, type);
             meta.getPersistentDataContainer().set(energyTypeKey, PersistentDataType.STRING, "FE");
+            meta.getPersistentDataContainer().set(temperatureKey, PersistentDataType.INTEGER, 28);
+            meta.getPersistentDataContainer().set(statusKey, PersistentDataType.STRING, "Active");
 
             accumulator.setItemMeta(meta);
+            updateLore(accumulator);
         } else if(type.equalsIgnoreCase("ultimate")) {
             int max_energy = ultimate_battery.max_energy;
             int max_output = ultimate_battery.max_output;
 
 
             meta.setDisplayName("§dАккумулятор");
-
-            meta.setLore(List.of(getEnergyLore(type, max_energy, max_energy), getTypeLore(type)));
             meta.getPersistentDataContainer().set(energyKey, PersistentDataType.INTEGER, max_energy);
             meta.getPersistentDataContainer().set(maxEnergyKey, PersistentDataType.INTEGER, max_energy);
             meta.getPersistentDataContainer().set(maxEnergyOutputKey, PersistentDataType.INTEGER, max_output);
             meta.getPersistentDataContainer().set(typeKey, PersistentDataType.STRING, type);
             meta.getPersistentDataContainer().set(energyTypeKey, PersistentDataType.STRING, "FE");
+            meta.getPersistentDataContainer().set(temperatureKey, PersistentDataType.INTEGER, 28);
+            meta.getPersistentDataContainer().set(statusKey, PersistentDataType.STRING, "Active");
 
             accumulator.setItemMeta(meta);
+            updateLore(accumulator);
         }
 
         return accumulator;
     }
 
-    public static int getBatteryEnergy(ItemStack item) {
-
+    public static Integer getTemperature(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
-        int type = meta.getPersistentDataContainer().get(energyKey, PersistentDataType.INTEGER);
-        return type;
+        return meta.getPersistentDataContainer().get(temperatureKey, PersistentDataType.INTEGER);
+    }
+
+    public static void setTemperature(ItemStack item, int temp) {
+        ItemMeta meta = item.getItemMeta();
+        meta.getPersistentDataContainer().set(temperatureKey, PersistentDataType.INTEGER, temp);
+        item.setItemMeta(meta);
+        updateLore(item);
+    }
+
+    public static String getStatus(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        return meta.getPersistentDataContainer().get(statusKey, PersistentDataType.STRING);
+    }
+
+    public static void setStatus(ItemStack item, String status) {
+        ItemMeta meta = item.getItemMeta();
+        meta.getPersistentDataContainer().set(statusKey, PersistentDataType.STRING, status);
+        item.setItemMeta(meta);
+        updateLore(item);
+    }
+
+    public static Integer getBatteryEnergy(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        return meta.getPersistentDataContainer().get(energyKey, PersistentDataType.INTEGER);
     }
 
     public static void setBatteryEnergy(ItemStack item, int energy) {
 
-        int max_energy = 0;
         ItemMeta meta = item.getItemMeta();
-        String type = getBatteryType(item);
+        meta.getPersistentDataContainer().set(energyKey, PersistentDataType.INTEGER, energy);
+        item.setItemMeta(meta);
+        updateLore(item);
+    }
 
-        if (type.equalsIgnoreCase("base")) {
-            max_energy = base_battery.max_energy;
-        } else if (type.equalsIgnoreCase("advanced")) {
-            max_energy = advanced_battery.max_energy;
-        } else if (type.equalsIgnoreCase("ultimate")) {
-            max_energy = ultimate_battery.max_energy;
-        }
+    public static void updateLore(ItemStack item) {
+
+        ItemMeta meta = item.getItemMeta();
+
+        String type = getBatteryType(item);
+        String status = getStatus(item);
+        Integer temp = getTemperature(item);
+        Integer energy = getBatteryEnergy(item);
+        Integer maxEnergy = getBatteryMaxEnergy(item);
+
 
 
         meta.getPersistentDataContainer().set(energyKey, PersistentDataType.INTEGER, energy);
-        meta.setLore(List.of(getEnergyLore(type, energy, max_energy), getTypeLore(type)));
-
-        item.setItemMeta(meta);
+        meta.setLore(List.of(
+                getEnergyLore(type, energy, maxEnergy),
+                getTypeLore(type),
+                gettemperatureLore(type, temp),
+                getStatusLore(type, status)
+        ));
     }
 
 
-    public static int getBatteryMaxEnergy(ItemStack item) {
+    public static Integer getBatteryMaxEnergy(ItemStack item) {
 
         ItemMeta meta = item.getItemMeta();
-        int type = meta.getPersistentDataContainer().get(maxEnergyKey, PersistentDataType.INTEGER);
-        return type;
+        return meta.getPersistentDataContainer().get(maxEnergyKey, PersistentDataType.INTEGER);
     }
 
-    public static int getBatteryMaxOutputEnergy(ItemStack item) {
+    public static Integer getBatteryMaxOutputEnergy(ItemStack item) {
 
         ItemMeta meta = item.getItemMeta();
-        int type = meta.getPersistentDataContainer().get(maxEnergyOutputKey, PersistentDataType.INTEGER);
-        return type;
+        return meta.getPersistentDataContainer().get(maxEnergyOutputKey, PersistentDataType.INTEGER);
     }
 
     public static String getBatteryType(ItemStack item) {
 
         ItemMeta meta = item.getItemMeta();
-        String type = meta.getPersistentDataContainer().get(typeKey, PersistentDataType.STRING);
-        return type;
+        return meta.getPersistentDataContainer().get(typeKey, PersistentDataType.STRING);
     }
 
     public static String getEnergyLore(String type, int energy, int max_energy) {
@@ -173,6 +207,29 @@ public class Battery {
         return "";
     }
 
+    public static String getStatusLore(String type, String status) {
+
+        if (type.equalsIgnoreCase("base")) {
+            return "§7Статус: " + status;
+        } else if (type.equalsIgnoreCase("advanced")) {
+            return "§eСтатус: " + status;
+        } else if (type.equalsIgnoreCase("ultimate")) {
+            return "§dСтатус: " + status;
+        }
+        return "";
+    }
+
+    public static String gettemperatureLore(String type, Integer temperature) {
+
+        if (type.equalsIgnoreCase("base")) {
+            return "§7Температура: " + temperature;
+        } else if (type.equalsIgnoreCase("advanced")) {
+            return "§eТемпература: " + temperature;
+        } else if (type.equalsIgnoreCase("ultimate")) {
+            return "§dТемпература: " + temperature;
+        }
+        return "";
+    }
 
 
 }

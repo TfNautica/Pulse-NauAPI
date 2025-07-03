@@ -4,10 +4,24 @@ main: org.tfnautica.nauapi.NauAPI
 api-version: '1.21.7'
 author: 'TfNautica'
 description: 'Разработка для Pulse'
+website: https://github.com/TfNautica/Pulse-NauAPI
 commands:
   nauapi:
     aliases:
       - napi
       - na
     description: NauAPI command
-    permission: nauapi.util.nauapi
+
+permissions:
+  nauapi.*:
+    description: "All permission"
+    default: op
+    children:
+      nauapi.commands.reload: true
+      nauapi.command.help: true
+  nauapi.commands.reload:
+    description: "Permission to reload configuration"
+    default: not op
+  nauapi.commands.help:
+    description: "Permission to help"
+    default: not op

@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.tfnautica.nauapi.NauAPI;
-import org.tfnautica.nauapi.util.Battery;
 
 public class ControlPanelListener implements Listener {
     public static JavaPlugin plugin = NauAPI.instance;

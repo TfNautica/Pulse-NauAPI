@@ -1,7 +1,6 @@
-package org.tfnautica.nauapi.util;
+package org.tfnautica.nauapi.utill;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.tfnautica.nauapi.NauAPI;
 

@@ -1,4 +1,4 @@
-package org.tfnautica.nauapi.util.magnet;
+package org.tfnautica.nauapi.utill.magnet;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

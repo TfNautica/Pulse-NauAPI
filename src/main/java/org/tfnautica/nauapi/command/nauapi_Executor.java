@@ -1,21 +1,13 @@
 package org.tfnautica.nauapi.command;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.tfnautica.nauapi.NauAPI;
-import org.tfnautica.nauapi.util.Point;
-import org.tfnautica.nauapi.util.Battery;
-import org.tfnautica.nauapi.util.magnet.Magnet;
 
-import static org.tfnautica.nauapi.util.ConfigManager.*;
-import static org.tfnautica.nauapi.util.message.*;
+import static org.tfnautica.nauapi.utill.message.*;
 
 public class nauapi_Executor implements CommandExecutor {
 
@@ -26,7 +18,7 @@ public class nauapi_Executor implements CommandExecutor {
         if(args.length == 1) {
             String arg = args[0];
             if( arg.equalsIgnoreCase("reload") ) {
-                if(sender.hasPermission("nauapi.util.reload")) {
+                if(sender.hasPermission("nauapi.commands.reload")) {
                     plugin.saveConfig();
                     plugin.reloadConfig();
                     sender.sendMessage(done_message("Конфигурация плагина успешно перезагружена"));
@@ -34,7 +26,7 @@ public class nauapi_Executor implements CommandExecutor {
                     sender.sendMessage(error_message("У вас недостаточно прав!"));
                 }
             } else if (arg.equalsIgnoreCase("help")) {
-                if(sender.hasPermission("nauapi.util.help")) {
+                if(sender.hasPermission("nauapi.commands.help")) {
                     sender.sendMessage(done_message("Выполнена команда /nauapi help"));
                 } else {
                     sender.sendMessage(error_message("У вас недостаточно прав!"));

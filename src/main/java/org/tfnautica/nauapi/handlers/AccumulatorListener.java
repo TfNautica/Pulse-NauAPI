@@ -8,9 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.tfnautica.nauapi.NauAPI;
-import org.tfnautica.nauapi.util.Battery;
-
-import java.util.List;
+import org.tfnautica.nauapi.utill.Battery;
 
 public class AccumulatorListener implements Listener {
     public static JavaPlugin plugin = NauAPI.instance;

@@ -1,4 +1,4 @@
-package org.tfnautica.nauapi.util;
+package org.tfnautica.nauapi.utill;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
